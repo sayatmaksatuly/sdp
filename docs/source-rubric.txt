@@ -1,0 +1,119 @@
+SDP Bonus Tasks
+Overview
+20 standalone bonus tasks, 4 per pattern, each with its own fun scenario, no connection to the regular assignments or to each other. All use only patterns covered through week 5: Builder, Factory Method, Adapter, Abstract Factory, Bridge. Handy for giving different students or groups a different task so nobody ends up solving the same thing.
+#
+Task
+Pattern
+Points
+1
+The Villain Lair Builder
+Builder
+(2)
+2
+The Birthday Cake Architect
+Builder
+(3)
+3
+The Dating Profile Builder
+Builder
+(4)
+4
+The Spaceship Customizer
+Builder
+(6)
+5
+The Potion Brewery
+Factory Method
+(2)
+6
+The Food Truck Spawner
+Factory Method
+(3)
+7
+The Monster Hatchery
+Factory Method
+(4)
+8
+The Meme Generator Factory
+Factory Method
+(6)
+9
+Grandpa's Flip Phone Translator
+Adapter
+(2)
+10
+The Ancient Fax Whisperer
+Adapter
+(3)
+11
+The Universal Game Controller
+Adapter
+(4)
+12
+The Time Traveler's Currency Exchanger
+Adapter
+(6)
+13
+The Cereal Box Family
+Abstract Factory
+(2)
+14
+The Wedding vs Funeral Caterer
+Abstract Factory
+(3)
+15
+The Theme Park Switcheroo
+Abstract Factory
+(4)
+16
+The Parallel Universe Generator
+Abstract Factory
+(6)
+17
+The Coffee Order Translator
+Bridge
+(2)
+18
+The Universal Remote for Appliances
+Bridge
+(3)
+19
+The Robot Pet Shop
+Bridge
+(4)
+20
+The Multiverse Messenger
+Bridge
+(6)
+Builder
+1. The Villain Lair Builder (2 points). A cartoonishly dramatic supervillain hires the student to build secret lairs through a fluent LairBuilder: addTrapRoom(), addSharkTank(), addHenchmenQuarters(), addMonologueBalcony(), build(). build() must refuse a lair with a shark tank but no observation deck. Add one brand-new optional step without breaking any existing client code. Grading: 1 pt dependency rule enforced, 1 pt new step added cleanly.
+2. The Birthday Cake Architect (3 points). A CakeBuilder assembles towering birthday cakes layer by layer: addSpongeLayer(), addFrosting(), addFondant(), addCandles(int count). build() must refuse fondant applied before a crumb-coat step exists. Implement the builder with that rule, then add an addSparklers() step with zero changes to existing client code. Grading: 1 pt builder and ordering rule, 1 pt new step with no regressions, 1 pt a short note on why the fluent chain stayed backward compatible.
+3. The Dating Profile Builder (4 points). A deliberately silly DatingProfileBuilder assembles a profile: name, bio, at least one hobby, an optional "red flag" field. build() must refuse a profile with zero hobbies. Implement it, then build the same fields in two different orders across two client calls, proving order doesn't affect correctness. Walkthrough (3 to 5 min): explain how you'd add a verification step without breaking existing calls. Grading: 2 pts correct builder with the hobby rule, 1 pt order-independence demonstrated, 1 pt walkthrough.
+4. The Spaceship Customizer (6 points). A SpaceshipBuilder assembles custom ships from interdependent parts: weapons, a power core, armor, engines. build() must refuse a ship whose total weapon power exceeds what the chosen power core can supply. Implement the builder with this validation, then defend it live: add a brand-new part category (say, shields) with zero changes to the existing weapon/power-core validation. Grading: 3 pts correct builder and validation, 2 pts new category integrates cleanly, 1 pt defense.
+Factory Method
+5. The Potion Brewery (2 points). A chaotic wizard's shop brews potions through a PotionCreator hierarchy. Implement at least 2 potion types, each reporting a random one-line side effect pulled from at least 3 options, then add a genuinely new 3rd potion type with zero edits to existing classes. Grading: 1 pt new type wired with zero edits elsewhere, 1 pt randomized side effects for all 3 types.
+6. The Food Truck Spawner (3 points). A FoodTruckCreator hierarchy spawns food trucks (TacoTruck, RamenTruck), each with its own "today's special" logic that changes by day of week. Implement 2 truck types with that logic, then add a 3rd with zero edits elsewhere. Grading: 1 pt correct creator hierarchy, 1 pt day-based special logic genuinely varies, 1 pt new truck type added cleanly.
+7. The Monster Hatchery (4 points). A MonsterCreator hierarchy hatches monsters with randomized stat rolls per type (a DragonCreator rolls higher fire stats than a SlimeCreator). Implement at least 2 monster types with distinct stat ranges, then add a 3rd with zero edits elsewhere. Walkthrough (3 to 5 min): explain how client code stays unaware of which concrete creator it's using. Grading: 2 pts correct hierarchy with distinct stat ranges, 1 pt new type cleanly added, 1 pt walkthrough.
+8. The Meme Generator Factory (6 points). A MemeCreator hierarchy produces meme formats (top-text-bottom-text, single caption, comic panel) with real layout validation (overly long text gets rejected or shrunk, never overflows). Implement at least 2 formats with that validation, then defend it live: add a 3rd format with zero changes to the existing format classes. Grading: 3 pts correct hierarchy and validation, 2 pts new format integrates cleanly, 1 pt defense.
+Adapter
+9. Grandpa's Flip Phone Translator (2 points). Grandpa's flip phone only exposes sendTextViaBeep(String number, String shortMsg) with a 20-character limit, nothing like the app's modern Messenger interface (send(Contact c, String message)). Write an Adapter so the flip phone works wherever a Messenger is expected, handling longer messages sensibly (split or truncate, your call, but handled). Grading: 1 pt correct adapter, 1 pt the length limit is actually handled, not ignored.
+10. The Ancient Fax Whisperer (3 points). The department basement produced a working fax machine from 1987. Its driver, AncientFaxMachine, only knows sendViaPhoneLine(byte[] rawPixels, String phoneNumber) and returns a confirmation code as static-noise text. The app only talks to DocumentSender: send(Document doc, String recipientId) returning a SendResult. Write the FaxAdapter, plus 1 unit test. Grading: 2 pts correct adapter, 1 pt test.
+11. The Universal Game Controller (4 points). A RetroJoystick exposes readPaddlePosition() returning -100 to 100 with inverted polarity; the app expects any controller to implement GameController with getAxis(String name) returning -1.0 to 1.0. Write the adapter, correctly handling the inversion and rescaling. Walkthrough (3 to 5 min): explain what would break without it if a second retro device were added. Grading: 2 pts correct adapter and rescaling, 1 pt test, 1 pt walkthrough.
+12. The Time Traveler's Currency Exchanger (6 points). A MedievalCoinPurse only knows countGoldPieces() and countSilverPieces(); the app's PaymentProcessor expects charge(long amountInCents). Write the adapter, correctly handling the gold/silver-to-cents conversion including rounding. Defend it live: add a second legacy currency system (your own invention) with zero changes to PaymentProcessor or existing client code. Grading: 3 pts correct adapter and conversion, 2 pts rounding and edge cases handled, 1 pt defense.
+Abstract Factory
+13. The Cereal Box Family (2 points). Two concrete factories, SuperheroCerealFactory and DinosaurCerealFactory, each produce a matching Mascot and Jingle pair. Implement both families and swap the active factory via one flag, with zero type checks in client code. Grading: 1 pt both families correct and consistent, 1 pt clean client code.
+14. The Wedding vs Funeral Caterer (3 points). Two factories produce a consistent Menu + Decor family for either mood. Implement both, swap via a flag, then add a 3rd mood of your choice with zero edits to the existing 2 factories. Grading: 1 pt families correct, 1 pt clean swap, 1 pt 3rd mood added cleanly.
+15. The Theme Park Switcheroo (4 points). A theme park flips overnight between "Horror Nights" and "Summer Fun" mode, each a matching Ride + BackgroundTrack family. Implement both factories, swap via a flag, simulate a full day in each mode. Walkthrough (3 to 5 min): explain how a 3rd mode would be added. Grading: 2 pts factories correct and consistent, 1 pt clean client code, 1 pt walkthrough.
+16. The Parallel Universe Generator (6 points). Three factories (SteampunkUniverseFactory, CyberpunkUniverseFactory, MedievalUniverseFactory) each produce a consistent trio: a Hero, a Villain, and a Vehicle. Client code must swap all 3 universes through one flag with zero type checks anywhere. Defend it live: add a 4th universe with zero edits to the existing 3 factories. Grading: 3 pts all 3 families correct and internally consistent, 2 pts clean client code across all 3, 1 pt defense.
+Bridge
+17. The Coffee Order Translator (2 points). An abstraction CoffeeDrink (Latte, Americano) is bridged to a separate BrewMethod implementor (EspressoMachine, PourOver). Demonstrate all 2 times 2 = 4 valid combinations. Grading: 1 pt correct split, 1 pt all 4 combinations shown working.
+18. The Universal Remote for Appliances (3 points). An abstraction Appliance (TV, Fan) is bridged to a RemoteProtocol implementor (InfraredRemote, BluetoothRemote). Demonstrate all 4 combinations, then add a 3rd appliance with zero changes to the protocol side. Grading: 1 pt correct split, 1 pt all combinations shown, 1 pt new appliance added cleanly.
+19. The Robot Pet Shop (4 points). Robot pets (RobotDog, RobotCat) are driven by different control systems (VoiceControl, AppControl). Implement the bridge with all 4 combinations working. Walkthrough (3 to 5 min): explain how a 3rd control system would be added with zero changes to the pet side. Grading: 2 pts correct split, 1 pt all combinations shown, 1 pt walkthrough.
+20. The Multiverse Messenger (6 points). An abstraction MessageType (TextMessage, VoiceMessage) is bridged to a DeliveryChannel implementor (CarrierPigeon, QuantumTeleporter). Implement all 4 combinations, then defend it live: add a 3rd delivery channel with zero changes to the message side. Grading: 3 pts correct split with independent variation, 2 pts all combinations shown, 1 pt defense.
+Shared quick-check questions
+For the (4)-point walkthroughs and (6)-point defenses, pick 1 to 2 of these:
+What would you have to edit elsewhere if a new case (a product, an implementor, a legacy device) were added right now?
+Why this pattern here and not the obvious alternative (an if/else chain, direct inheritance, calling the legacy class directly)?
+Walk me through what happens, step by step, when a specific call in your code runs.
+Which SOLID principle does this most directly support, and how would you show it with a quick test?
+

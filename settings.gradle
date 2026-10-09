@@ -1,0 +1,6 @@
+rootProject.name = 'sdp-bonus-tasks'
+(1..20).each { number ->
+    def taskName = String.format('task%02d', number)
+    include(taskName)
+    project(":${taskName}").projectDir = file("bonus-tasks/${taskName}")
+}
